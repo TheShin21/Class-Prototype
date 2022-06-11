@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedCube : Cubes
+public class RedCube : Cubes //Inheritance
 {
-    public override void setText()
+    public override void setText() //Polymorphism
     {
-        gameManager.GetComponent<GameManager>().setText("Look at me! I am a red cube!");
+        if(gameManager != null) gameManager.GetComponent<GameManager>().displayText("Look at me! I am a red cube!");
+        else Debug.Log("Null!");
     }
 }

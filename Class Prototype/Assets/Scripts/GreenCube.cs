@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenCube : Cubes
+public class GreenCube : Cubes //Inheritance
 {
-    public override void setText()
+    public override void setText() //Polymorphism
     {
-        gameManager.GetComponent<GameManager>().setText("Hi, I am a green cube!");
+        if(gameManager != null) gameManager.GetComponent<GameManager>().displayText("Hi, I am a green cube!");
+        else Debug.Log("Null!");
     }
 }

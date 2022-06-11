@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Cubes : MonoBehaviour
 {
-    public GameObject gameManager 
+    private GameObject _gameManager; //Encapsulation
+    public GameObject gameManager
     { 
-    get { return gameManager; }
-    private set {if(GameObject.Find("GameManager") != null) value = GameObject.Find("GameManager");} 
-    }
-
+    get { return _gameManager; }
+    private set{ _gameManager = value; }
+    } 
+    
     public virtual void setText()
     {
-        gameManager.GetComponent<GameManager>().setText("Template Text");
+        gameManager.GetComponent<GameManager>().displayText("Template Text");
+    }
+
+    public void Start()
+    {
+        if(GameObject.Find("GameManager") != null) _gameManager = GameObject.Find("GameManager");
     }
 }

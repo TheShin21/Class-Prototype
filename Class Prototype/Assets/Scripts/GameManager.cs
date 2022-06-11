@@ -10,15 +10,25 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0)) 
         {
-            GameObject hitGO = getRayObject(); //Assign gameobject of what has been hit
+            GameObject hitGO = getRayObject(); //Abstraction
             
             if(hitGO != null)
             {
-                if(hitGO.TryGetComponent<GreenCube>(out GreenCube Green)) Green.setText();
-                if(hitGO.TryGetComponent<GoldCube>(out GoldCube Gold)) Gold.setText();
-                if(hitGO.TryGetComponent<RedCube>(out RedCube Red)) Red.setText();
+                getScriptCube(hitGO); //Abstraction
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            exitGame(); //Abstraction
+        }
+    }
+
+    void getScriptCube(GameObject gameOb)
+    {
+        if(gameOb.TryGetComponent<GreenCube>(out GreenCube Green)) Green.setText();
+        if(gameOb.TryGetComponent<GoldCube>(out GoldCube Gold)) Gold.setText();
+        if(gameOb.TryGetComponent<RedCube>(out RedCube Red)) Red.setText();
     }
 
     GameObject getRayObject()
@@ -32,8 +42,13 @@ public class GameManager : MonoBehaviour
         } else return null;
     }
 
-    public void setText(string text)
+    public void displayText(string text)
     {
         textObject.text = text;
+    }
+
+    void exitGame()
+    {
+        Application.Quit();
     }
 }
